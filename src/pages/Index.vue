@@ -1,8 +1,8 @@
 <template>
 
   <div class="q-pa-md q-gutter-sm">
-    <q-btn label="Alert" color="primary" @click="alert" />
-    <q-btn label="Prompt" color="primary" @click="prompt" />
+    <!-- <q-btn label="Alert" color="primary" @click="alert" />
+    <q-btn label="Prompt" color="primary" @click="prompt" /> -->
   </div>
 
 </template>
