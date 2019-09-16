@@ -11,7 +11,6 @@
           {{person.length!==0?person.profile.nickname:'未登录'}}
          <q-btn :label="person.length!==0?'退出账号':'请登录'" color="primary" @click="loginOut()"/>
         </q-toolbar-title>
-
         <q-btn dense flat round icon="menu" @click="right = !right" />
       </q-toolbar>
     </q-header>
@@ -19,14 +18,14 @@
     <q-drawer show-if-above v-model="left" side="left" bordered>
      热门歌单
      <q-list bordered>
-      <q-item clickable v-ripple v-for="item in hotlist" :key='item.id'>
+      <q-item clickable v-ripple v-for="item in hotlist" :key='item.id' @click="goplay(item)">
         <q-item-section avatar>
           <q-avatar>
             <img :src="item.picUrl">
           </q-avatar>
         </q-item-section>
         <q-item-section>{{item.name}}</q-item-section>
-         <q-btn dense flat round icon="add" @click="right = !right" />
+         <q-btn dense flat round icon="add" @click="goplay(item)" />
       </q-item>
        </q-list>
     </q-drawer>
@@ -41,9 +40,11 @@
           </q-avatar>
         </q-item-section>
         <q-item-section>{{item.name}}</q-item-section>
+        <q-btn dense flat round icon="delete" @click="right = !right" />
       </q-item>
        </q-list>
     </q-drawer>
+
     <q-dialog
       v-model="small"
     >
@@ -80,10 +81,18 @@
     </q-form>
       </q-card>
     </q-dialog>
-    <q-page-container>
+    <!-- <q-page-container>
       <router-view />
-    </q-page-container>
-
+    </q-page-container> -->
+  <!-- <p class="text-center">dsdsdsd</p> -->
+    <div class="text-center">
+       <q-media-player
+        type="audio"
+        :sources="sources"
+        background-color="blue-grey-2"
+        dark
+       />
+    </div>
     <q-footer elevated class="bg-grey-8 text-white">
       <q-toolbar>
         <q-toolbar-title>
@@ -116,7 +125,13 @@ export default {
       person: store.fetch(),
       defaultImg: 'https://cdn.quasar.dev/logo/svg/quasar-logo.svg',
       hotlist: [],
-      personlist: []
+      personlist: [],
+      sources: [
+        {
+          src: 'statics/media/Dee_Yan-Key_-_01_-_Driving_Home.mp3',
+          type: 'audio/mp3'
+        }
+      ]
     }
   },
   watch: {
@@ -229,6 +244,9 @@ export default {
       this.phone = null
       this.password = null
       this.accept = false
+    },
+    goplay (item) {
+      console.log(item)
     }
   },
   mounted () {
