@@ -47,7 +47,7 @@
                           <img :src='selitem.al.picUrl' />
                         </q-avatar>
                       </q-item-section>
-                      <q-item-section>{{selitem.al.name}}</q-item-section>
+                      <q-item-section>{{selitem.name}}</q-item-section>
                       <q-btn dense flat round icon='add' @click='addtolist(selitem)' />
                     </q-item>
                   </div>
@@ -92,7 +92,7 @@
                           <img :src='item.al.picUrl' />
                         </q-avatar>
                       </q-item-section>
-                      <q-item-section>{{item.al.name}}</q-item-section>
+                      <q-item-section>{{item.name}}</q-item-section>
                        <q-btn dense flat round label="—" @click='removefromlist(item)' />
                     </q-item>
                   </div>
@@ -183,7 +183,7 @@ export default {
           title: '义勇军进行曲',
           author: '中国人民解放军军乐团',
           img: 'http://p1.music.126.net/ru3yX-LScQStq7-UpLLrtQ==/112150186048251.jpg',
-          url: 'http://m7.music.126.net/20190917164159/28ebfbeb124e3a28a5a0ebb3d9a35639/ymusic/1c18/c0e0/9e32/d73757706a8b44e2d0e90cbbc3029a88.mp3'
+          url: 'http://m8.music.126.net/20190917172941/5afee5ae8b2e6c11f376e0703fd9ce70/ymusic/1c18/c0e0/9e32/d73757706a8b44e2d0e90cbbc3029a88.mp3'
         }
       ]
     }
@@ -346,13 +346,9 @@ export default {
       music.img = item.al.picUrl
       music.author = item.ar[0].name
       music.title = item.name
-      // this.playlist[0].img = item.al.picUrl
-      // this.playlist[0].author = item.ar[0].name
-      // this.playlist[0].title = item.name
       axios
         .get('/song/url?id=' + item.id)
         .then(response => {
-          // this.playlist[0].url = response.data.data[0].url
           music.url = response.data.data[0].url
           let index = this.playlist.findIndex(
             selectItem => selectItem.url === music.url
