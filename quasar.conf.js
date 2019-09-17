@@ -63,7 +63,14 @@ module.exports = function (ctx) {
         'QList',
         'QItem',
         'QItemSection',
-        'QItemLabel'
+        'QItemLabel',
+        'QTable',
+        'QTh',
+        'QTr',
+        'QTd',
+        'QExpansionItem',
+        'QCardSection',
+        'QSeparator'
         // 'QMediaPlayer'
       ],
 
